@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "a project management system for beginners",
   "license": "ISC",
-  "author": "",
-  "type": "commonjs",
+  "author": "Priyanshu Pratik",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node index.js"
+    "dev": "node index.js"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
   }
 }
