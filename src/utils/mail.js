@@ -1,4 +1,41 @@
 import Mailgen from "mailgen";
+import nodemailer from "nodemailer"
+
+const sendEmail = async(optios) => {
+    new Mailgen({
+        theme: "default",
+        product: {
+            name: "Task Manager",
+            link: "https://taskmanagerlink.com"
+        }
+    })
+
+    const emailTextual = mailGenerator.generatePlaintext(options.mailgenContent)
+    const emailtml  = mailGenerator.generate(options.mailgenContent)
+
+    const tranporter = nodemailer.createTransport({
+      host: process.env.MAILTRAP_SMTP_HOST,
+      port: process.env.MAILTRAP_SMTP_PORT,
+      auth: {
+        user: process.env.MAILTRAP_SMTP_USER,
+        pass: process.env.MAILTRAP_SMTP_PASS
+      }
+    });
+
+    const mail = {
+        from: "mail@example.com",//replace this
+        to: options.email,
+        subject:options.subject,
+        text: emailTextual,
+        html: emailHtml
+    }
+
+    try{
+        await transpoter.sendMail(mail)
+    } catch(error){
+        console.error("email service failed", error);
+    }
+}
 
 const emailVerificationMailgenContent = (username, verificationUrl) => {
   return {
@@ -42,4 +79,7 @@ const forgotPasswordMailgenContent = (username, passwordResetUrl) => {
   };
 };
 
-export { emailVerificationMailgenContent, forgotPasswordMailgenContent };
+export { emailVerificationMailgenContent,
+    forgotPasswordMailgenContent,
+    sendEmail
+};
