@@ -142,3 +142,35 @@ permission matrix
 ### and there is a lot more, really overwhelming lets do/ make them one at a time so it is going to take some time
 
 - this is not just a PRD doc but also for my better understanding of what i am building so i will scribble this digitally -> so someday i need to run this memory lane i know what mistakes/challanges i have faced and what solutions i have came up to, i.e. this is more for the interview purpose
+
+```
+projectmanager
+├─ .prettierignore
+├─ .prettierrc
+├─ package-lock.json
+├─ package.json
+├─ public
+│  └─ images
+├─ readme.md
+└─ src
+   ├─ app.js
+   ├─ controllers
+   │  ├─ auth.controllers.js
+   │  └─ healthcheck.controllers.js
+   ├─ db
+   │  └─ index.js
+   ├─ index.js
+   ├─ middlewares
+   ├─ models
+   │  └─ user.models.js
+   ├─ routes
+   │  └─ healthcheck.routes.js
+   ├─ utils
+   │  ├─ api-error.js
+   │  ├─ api-response.js
+   │  ├─ async-handler.js
+   │  ├─ constants.js
+   │  └─ mail.js
+   └─ validators
+
+```

@@ -72,6 +72,7 @@ userSchema.pre("save", async function(next){
   next()
 })
 
+//function to check if password is correct
 userSchema.methods.isPasswordCorrect = async function(password){
   return await bcrypt.compare(password, this.password) 
 }
@@ -81,7 +82,7 @@ userSchema.methods.generateAccessToken = function(){
     {
       _id: this.id,
       email: this.email,
-      username: this.username
+      username: this.username3
     },
     process.env.ACCESS_TOKEN_SECRET,
     {expiresIn: process.env.ACCESS_TOKEN_EXPIRY}
@@ -112,4 +113,4 @@ userSchema.methods.generateTemoraryToken = function() {
   return {unHashedToken, hashedToken, tokenExpiry}
 };
 
-export const user = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
