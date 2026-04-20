@@ -65,6 +65,7 @@ const userSchema = new Schema(
   },
 );
 
+// middleware to save changed/new passwords
 userSchema.pre("save", async function(next){
   if(!this.isModified("password")) return next()
 
@@ -77,20 +78,22 @@ userSchema.methods.isPasswordCorrect = async function(password){
   return await bcrypt.compare(password, this.password) 
 }
 
+//function for generating access token
 userSchema.methods.generateAccessToken = function(){
-  jwt.sign(
+  return jwt.sign(
     {
       _id: this.id,
       email: this.email,
-      username: this.username3
+      username: this.username
     },
     process.env.ACCESS_TOKEN_SECRET,
     {expiresIn: process.env.ACCESS_TOKEN_EXPIRY}
   )
 }
 
+//function for generating refresh token
 userSchema.methods.generateRefreshToken = function(){
-  jwt.sign(
+  return jwt.sign(
     {
       id: this.id,
       email: this.email,
@@ -101,7 +104,8 @@ userSchema.methods.generateRefreshToken = function(){
   )
 }
 
-userSchema.methods.generateTemoraryToken = function() {
+//function for generating temp token
+userSchema.methods.generateTemporaryToken = function() {
   const unHashedToken = crypto.randomBytes(20).toString("hex")
 
   const hashedToken = crypto
